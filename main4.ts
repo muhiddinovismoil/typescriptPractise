@@ -70,8 +70,8 @@ const mongoConnection: Connection = {
     },
 };
 
-let mngdb = new MongoDB<{ id?: number; name: string; age: number }>();
 // MONGO DB
+let mngdb = new MongoDB<{ id?: number; name: string; age: number }>();
 mngdb.connect(mongoConnection);
 mngdb.create({ id: 1, name: "Ali", age: 25 });
 mngdb.create({ id: 2, name: "Vali", age: 30 });
@@ -81,23 +81,24 @@ console.log("Updated MongoDB Data:", mngdb.read());
 mngdb.delete(1);
 console.log("MongoDB Data after deletion:", mngdb.read());
 mngdb.disconnect();
-
-// let sql = new SQLDB<{ id: number; name: string; age: number }>();
-// const sqlConnection: Connection = {
-//     client: "SQLDB",
-//     connection: {
-//         user: "root",
-//         host: "localhost",
-//         port: 3306,
-//         database: "exampleDb",
-//     },
-// };
-// // SQLDB example
-// sql.connect(sqlConnection);
-// sql.create({ id: 1, name: "Hasan", age: 40 });
-// sql.create({ id: 2, name: "Husan", age: 35 });
-// console.log("SQLDB Data:", sql.read());
-// sql.update(2, { name: "Husanbek", age: 36 });
-// console.log("Updated SQLDB Data:", sql.read());
-// sql.delete(2);
-// console.log("SQLDB Data after deletion:", sql.read());
+// *********************************************************************
+// *********************************************************************
+const sqlConnection: Connection = {
+    client: "SQLDB",
+    connection: {
+        user: "root",
+        host: "localhost",
+        port: 3306,
+        database: "exampleDb",
+    },
+};
+let sql = new SQLDB<{ id?: number; name: string; age: number }>();
+// SQLDB example
+sql.connect(sqlConnection);
+sql.create({ id: 1, name: "Hasan", age: 40 });
+sql.create({ id: 2, name: "Husan", age: 35 });
+console.log("SQLDB Data:", sql.read());
+sql.update(2, { name: "Husanbek", age: 36 });
+console.log("Updated SQLDB Data:", sql.read());
+sql.delete(2);
+console.log("SQLDB Data after delete:", sql.read());
