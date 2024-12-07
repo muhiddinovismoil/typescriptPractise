@@ -102,3 +102,4 @@ sql.update(2, { name: "Husanbek", age: 36 });
 console.log("Updated SQLDB Data:", sql.read());
 sql.delete(2);
 console.log("SQLDB Data after delete:", sql.read());
+sql.disconnect();
